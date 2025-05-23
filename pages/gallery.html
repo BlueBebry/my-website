@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея изображений</title>
+    <style>
+        .gallery {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .nav-buttons {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <h1>Моя галерея</h1>
+        <div class="image-container">
+            <img id="gallery-image" src="" alt="Галерея изображений">
+        </div>
+        <div class="nav-buttons">
+            <button id="prev-btn">Назад</button>
+            <button id="next-btn">Вперед</button>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            'https://goo.su/KdGb',
+            'https://goo.su/gRLo023',
+            'https://goo.su/HZ18Ak',
+            'https://goo.su/JI5e82Y'
+        ];
+        
+        let currentIndex = 0;
+        const galleryImage = document.getElementById('gallery-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        function showImage(index) {
+            galleryImage.src = images[index];
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+        
+        // Показываем первое изображение при загрузке
+        showImage(currentIndex);
+    </script>
+</body>
+</html>
